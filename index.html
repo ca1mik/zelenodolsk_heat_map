@@ -4,159 +4,258 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Карты обращений | АО «ЗВКС»</title>
-
-  <!-- Шрифт -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet"/>
 
   <style>
-    :root{
-      --c1:#0094ff;      /* фирменный светлый */
-      --c2:#005cb6;      /* фирменный средний */
-      --c3:#004a94;      /* фирменный тёмный */
-      --glass:rgba(255,255,255,.34);
-      --txt:#0f172a;
+    :root {
+      --c1: #0094ff;
+      --c2: #005cb6;
+      --c3: #004a94;
+      --glass: rgba(255, 255, 255, .34);
+      --txt: #0f172a;
     }
-    *{box-sizing:border-box;margin:0;padding:0}
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    body{
-      font-family:'Inter',sans-serif;color:var(--txt);
-      background:linear-gradient(135deg,var(--c1)0%,var(--c2)100%);
-      min-height:100vh;display:flex;flex-direction:column;overflow-x:hidden;
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--txt);
+      background: linear-gradient(135deg, var(--c1) 0%, var(--c2) 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
     }
 
     /* ---------- TOP BAR ---------- */
-    .topbar{
-      position:fixed;top:0;left:0;width:100%;
-      display:flex;align-items:center;justify-content:space-between;
-      padding:.7rem 1.2rem;
-      background:rgba(255,255,255,.28);
-      backdrop-filter:blur(15px);
-      border-bottom:1px solid rgba(255,255,255,.4);
-      z-index:1200;
+    .topbar {
+      position: fixed;
+      top: 0; left: 0; width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: .7rem 1.2rem;
+      background: rgba(255, 255, 255, .28);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid rgba(255, 255, 255, .4);
+      z-index: 1200;
     }
-    .top-left{display:flex;align-items:center;gap:.7rem}
 
-    .top-left img{
-      height:42px;width:auto;object-fit:contain;
-      filter:drop-shadow(0 1px 3px rgba(0,0,0,.25));
+    .top-left {
+      display: flex;
+      align-items: center;
+      gap: .7rem;
     }
-    .top-left span{
-      font-weight:600;font-size:1.05rem;color:#fff;
-      text-shadow:0 1px 3px rgba(0,0,0,.3);
-    }
-    @media(max-width:480px){ .top-left span{display:none;} }
 
-    /* единственный значок VK */
-    .social a{display:inline-block;margin-left:.9rem}
-    .social svg{
-      width:28px;height:28px;fill:var(--c3);
-      filter:drop-shadow(0 1px 3px rgba(0,0,0,.25));
-      transition:.25s;
+    .top-left img {
+      height: 42px;
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 1px 3px rgba(0, 0, 0, .25));
     }
-    .social a:hover svg{transform:scale(1.15);fill:var(--c1)}
+
+    .top-left span {
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: #fff;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, .3);
+    }
+
+    @media(max-width: 480px) {
+      .top-left span { display: none; }
+    }
+
+    .social a {
+      display: inline-block;
+      margin-left: .9rem;
+      color: var(--c3);
+    }
+
+    .social svg {
+      width: 28px;
+      height: 28px;
+      fill: currentColor;
+      filter: drop-shadow(0 1px 3px rgba(0, 0, 0, .25));
+      transition: .25s;
+    }
+
+    .social a:hover svg {
+      transform: scale(1.15);
+      fill: var(--c1);
+    }
 
     /* ---------- HERO ---------- */
-    .hero{
-      min-height:72vh;
-      display:flex;flex-direction:column;justify-content:center;align-items:center;
-      text-align:center;color:#fff;padding:140px 1rem 3.5rem;
+    .hero {
+      min-height: 72vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: #fff;
+      padding: 140px 1rem 3.5rem;
     }
-    h1{
-      font-size:clamp(2.3rem,4.5vw+1rem,3.5rem);
-      font-weight:600;margin-bottom:1rem;line-height:1.1
+
+    h1 {
+      font-size: clamp(2.3rem, 4.5vw + 1rem, 3.5rem);
+      font-weight: 600;
+      margin-bottom: 1rem;
+      line-height: 1.1;
     }
-    .subtitle{
-      font-size:clamp(1rem,1vw+1rem,1.3rem);
-      max-width:620px;opacity:.92
+
+    .subtitle {
+      font-size: clamp(1rem, 1vw + 1rem, 1.3rem);
+      max-width: 620px;
+      opacity: .92;
     }
-    .scroll-btn{
-      margin-top:2.8rem;padding:1rem 2.4rem;
-      border:none;border-radius:42px;cursor:pointer;
-      background:rgba(255,255,255,.2);color:#fff;font-weight:600;font-size:1.05rem;
-      backdrop-filter:blur(6px);
-      box-shadow:0 7px 22px rgba(0,0,0,.18);
-      transition:.25s;
+
+    .scroll-btn {
+      margin-top: 2.8rem;
+      padding: 1rem 2.4rem;
+      border: none;
+      border-radius: 42px;
+      cursor: pointer;
+      background: rgba(255, 255, 255, .2);
+      color: #fff;
+      font-weight: 600;
+      font-size: 1.05rem;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 7px 22px rgba(0, 0, 0, .18);
+      transition: .25s;
     }
-    .scroll-btn:hover{transform:translateY(-2px);background:rgba(255,255,255,.3)}
-    html{scroll-behavior:smooth}
+
+    .scroll-btn:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 255, 255, .3);
+    }
+
+    html { scroll-behavior: smooth; }
 
     /* ---------- SECTION CARDS ---------- */
-    .section{
-      background:#f7f9fc;border-radius:38px 38px 0 0;
-      margin-top:-46px;padding:4rem 1rem 6rem;
+    .section {
+      background: #f7f9fc;
+      border-radius: 38px 38px 0 0;
+      margin-top: -46px;
+      padding: 4rem 1rem 6rem;
     }
-    .grid{
-      max-width:1080px;margin:auto;
-      display:grid;gap:1.8rem;
-      grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+
+    .grid {
+      max-width: 1080px;
+      margin: auto;
+      display: grid;
+      gap: 1.8rem;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     }
-    .card{
-      background:var(--glass);backdrop-filter:blur(18px);
-      border:1px solid rgba(255,255,255,.52);
-      border-radius:18px;padding:1.7rem 1.5rem;
-      box-shadow:0 6px 24px rgba(0,0,0,.10);
-      transform:translateY(36px);opacity:0;animation:rise .8s forwards;
+
+    .card {
+      background: var(--glass);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 255, 255, .52);
+      border-radius: 18px;
+      padding: 1.7rem 1.5rem;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, .10);
+      transform: translateY(36px);
+      opacity: 0;
+      animation: rise .8s forwards;
     }
-    .card:nth-child(1){animation-delay:.1s}
-    .card:nth-child(2){animation-delay:.25s}
-    .card:nth-child(3){animation-delay:.4s}
-    .card:nth-child(4){animation-delay:.55s}
-    .card a{
-      text-decoration:none;color:var(--c3);
-      font-weight:600;font-size:1.05rem;
+
+    .card:nth-child(1) { animation-delay: .1s; }
+    .card:nth-child(2) { animation-delay: .25s; }
+    .card:nth-child(3) { animation-delay: .4s; }
+    .card:nth-child(4) { animation-delay: .55s; }
+
+    .card a {
+      text-decoration: none;
+      color: var(--c3);
+      font-weight: 600;
+      font-size: 1.05rem;
     }
-    .card:hover{transform:translateY(-4px) scale(1.02)}
-    .card:hover a{color:var(--c1)}
-    @keyframes rise{to{transform:translateY(0);opacity:1}}
+
+    .card:hover { transform: translateY(-4px) scale(1.02); }
+    .card:hover a { color: var(--c1); }
+
+    @keyframes rise {
+      to { transform: translateY(0); opacity: 1; }
+    }
 
     /* ---------- PHONE BAR ---------- */
-    .bar{
-      position:fixed;bottom:22px;left:50%;transform:translateX(-50%);
-      display:flex;gap:1.6rem;align-items:center;
-      font-weight:600;font-size:.95rem;color:var(--c3);
-      background:var(--glass);backdrop-filter:blur(18px);
-      border:1px solid rgba(255,255,255,.5);
-      border-radius:40px;padding:.75rem 1.8rem;
-      box-shadow:0 6px 22px rgba(0,0,0,.13);z-index:1000;
+    .bar {
+      position: fixed;
+      bottom: 22px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 1.6rem;
+      align-items: center;
+      font-weight: 600;
+      font-size: .95rem;
+      color: var(--c3);
+      background: var(--glass);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 255, 255, .5);
+      border-radius: 40px;
+      padding: .75rem 1.8rem;
+      box-shadow: 0 6px 22px rgba(0, 0, 0, .13);
+      z-index: 1000;
     }
-    .bar a{text-decoration:none;color:var(--c3)}
-    .bar a:hover{color:var(--c1)}
-    @media(max-width:460px){.bar{flex-direction:column;gap:.4rem;font-size:.9rem}}
+
+    .bar a {
+      text-decoration: none;
+      color: var(--c3);
+    }
+
+    .bar a:hover { color: var(--c1); }
+
+    @media(max-width:460px) {
+      .bar { flex-direction: column; gap: .4rem; font-size: .9rem; }
+    }
 
     /* ---------- FOOTER ---------- */
-    footer{text-align:center;font-size:.9rem;color:#475569;
-           padding:2.6rem 1rem 5.5rem;background:#f7f9fc;margin-top:auto}
+    footer {
+      text-align: center;
+      font-size: .9rem;
+      color: #475569;
+      padding: 2.6rem 1rem 5.5rem;
+      background: #f7f9fc;
+      margin-top: auto;
+    }
   </style>
 </head>
+
 <body>
 
   <!-- TOP BAR -->
   <nav class="topbar">
     <div class="top-left">
-      <!-- укажите правильное имя файла: logo.png  /  logo.svg -->
       <img src="logo.png" alt="АО ЗВКС">
       <span>АО «ЗВКС»</span>
     </div>
 
-    <!-- только VK -->
     <div class="social">
+      <!-- Telegram -->
+      <a href="https://t.me/zelvodokanal" target="_blank" aria-label="Telegram">
+        <svg viewBox="0 0 24 24">
+          <path fill="currentColor" d="M9.93 15.57 9.66 19.91c.48 0 .69-.21.94-.46l2.26-2.18 4.69 3.43c.86.47 1.48.22 1.71-.79l3.1-14.54c.28-1.27-.46-1.77-1.29-1.46L2.17 10.26c-1.23.48-1.22 1.17-.21 1.48l4.69 1.47 10.75-7.12c.55-.35 1.05-.16.64.19"/>
+        </svg>
+      </a>
+      <!-- VK -->
       <a href="https://vk.com/zelvodokanal" target="_blank" aria-label="VK">
-        <svg viewBox="0 0 24 24"><path d="M3.54 5.5h3.23c.13 0 .25.09.29.21.86 2.8 2.3 5.34 4.3 7.36.14.14.38.05.42-.15l.81-3.29c.03-.13.14-.22.29-.22h2.57c.19 0 .32.19.28.37l-1.17 4.44c-.04.14.03.29.1.3 1.26.77 2.47 1.66 3.61 2.28.15.08.34 0 .4-.18l1.36-4.91c.04-.13.15-.22.27-.22h3.01c.19 0 .32.19.26.39-.63 1.63-1.89 4.08-4.1 6.1C15.62 22.61 12.6 23 12.6 23S2 23 2 12.34c0-3.16 1.54-6.84 1.54-6.84Z"/></svg>
+        <svg viewBox="0 0 24 24">
+          <path fill="currentColor" d="M3.54 5.5h3.23c.13 0 .25.09.29.21.86 2.8 2.3 5.34 4.3 7.36.14.14.38.05.42-.15l.81-3.29c.03-.13.14-.22.29-.22h2.57c.19 0 .32.19.28.37l-1.17 4.44c-.04.14.03.29.1.3 1.26.77 2.47 1.66 3.61 2.28.15.08.34 0 .4-.18l1.36-4.91c.04-.13.15-.22.27-.22h3.01c.19 0 .32.19.26.39-.63 1.63-1.89 4.08-4.1 6.1C15.62 22.61 12.6 23 12.6 23S2 23 2 12.34c0-3.16 1.54-6.84 1.54-6.84Z"/>
+        </svg>
       </a>
     </div>
   </nav>
 
   <!-- HERO -->
   <header class="hero">
-      <h1>Интерактивные карты обращений</h1>
-      <p class="subtitle">Наглядная визуализация обращений жителей по водоснабжению и канализации.</p>
-      <button class="scroll-btn"
-              onclick="document.getElementById('maps').scrollIntoView({behavior:'smooth'})">
-        Смотреть карты
-      </button>
+    <h1>Интерактивные карты обращений</h1>
+    <p class="subtitle">Наглядная визуализация обращений жителей по водоснабжению и канализации.</p>
+    <button class="scroll-btn" onclick="document.getElementById('maps').scrollIntoView({behavior:'smooth'})">
+      Смотреть карты
+    </button>
   </header>
 
-  <!-- CARDS -->
+  <!-- КАРТОЧКИ -->
   <section id="maps" class="section">
     <div class="grid">
       <div class="card"><a href="03.23-04.25 kanalizatsiya.html">Март 2023 — Апрель 2025 · Канализация</a></div>
