@@ -1,187 +1,155 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <title>Карты обращений | ZVKS</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Карты обращений | АО «ЗВКС»</title>
 
-  <!-- Google Font для красивой типографики -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet"/>
 
   <style>
     :root{
-      --bg1:#fafeff;        /* светлый верх */
-      --bg2:#e7f1ff;        /* плавный низ */
-      --accent:#14b8a6;     /* мятный */
-      --accent-dark:#0d9488;
-      --glass:rgba(255,255,255,0.35);
+      /* фирменный градиент капли: от светло-голубого к тёмно-синему */
+      --c1:#0094ff;
+      --c2:#005cb6;
+      --c3:#004a94; /* самый тёмный */
+      --text:#0f172a;
+      --glass:rgba(255,255,255,.34);
     }
     *{box-sizing:border-box;margin:0;padding:0}
     body{
-      font-family:'Poppins',sans-serif;
-      color:#083344;
-      background:linear-gradient(180deg,var(--bg1)0%,var(--bg2)100%);
-      overflow-x:hidden;
+      font-family:'Inter',sans-serif;
+      color:var(--text);
+      background:linear-gradient(135deg,var(--c1)0%,var(--c2)100%);
+      min-height:100vh;overflow-x:hidden;
+      display:flex;flex-direction:column;
     }
 
     /* ---------- HERO ---------- */
     .hero{
-      min-height:100vh;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      align-items:center;
-      text-align:center;
-      padding:0 1.2rem;
-      background:url('https://raw.githubusercontent.com/erkarl/map-gradients/main/abstract-map.svg')
-                 center/cover no-repeat;
-      position:relative;
-      isolation:isolate;
+      min-height:70vh;
+      display:flex;flex-direction:column;justify-content:center;align-items:center;
+      text-align:center;padding:2rem 1rem 3rem;color:#fff;
     }
-    /* лёгкая цветная вуаль поверх карты */
-    .hero::after{
-      content:'';
-      position:absolute;
-      inset:0;
-      background:linear-gradient(135deg,rgba(20,184,166,.35) 0%,rgba(59,130,246,.25) 100%);
-      mix-blend-mode:soft-light;
-      pointer-events:none;
-      z-index:-1;
+    .logo{
+      width:95px;height:auto;margin-bottom:1.2rem;
     }
     h1{
       font-size:clamp(2.2rem,4vw+1rem,3.4rem);
-      font-weight:600;
-      line-height:1.1;
+      font-weight:600;line-height:1.1;margin-bottom:1rem;
     }
     .subtitle{
-      font-size:clamp(1.05rem,1.2vw+0.8rem,1.35rem);
-      margin-top:1rem;
-      max-width:680px;
-      opacity:.9;
+      font-size:clamp(1rem,1vw+1rem,1.3rem);
+      max-width:620px;opacity:.92;
     }
     .scroll-btn{
-      margin-top:3.5rem;
-      padding:.9rem 1.8rem;
-      font-size:1.05rem;
-      font-weight:600;
-      color:#fff;
-      background:var(--accent);
-      border:none;
-      border-radius:38px;
-      cursor:pointer;
-      box-shadow:0 8px 18px rgba(13,148,136,.28);
-      transition:.25s;
+      margin-top:2.6rem;padding:1rem 2.2rem;
+      border:none;border-radius:38px;
+      background:rgba(255,255,255,.18);
+      color:#fff;font-weight:600;font-size:1.05rem;
+      backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+      cursor:pointer;transition:.25s;box-shadow:0 6px 18px rgba(0,0,0,.18);
     }
-    .scroll-btn:hover{background:var(--accent-dark);transform:translateY(-2px)}
-    /* плавный скролл */
+    .scroll-btn:hover{transform:translateY(-2px);background:rgba(255,255,255,.28)}
     html{scroll-behavior:smooth}
 
     /* ---------- CARDS SECTION ---------- */
     .section{
-      padding:4.5rem 1rem 6rem;
-      max-width:1100px;
-      margin:auto;
+      background:#f7f9fc;
+      border-radius:32px 32px 0 0;
+      margin-top:-48px;padding:4rem 1rem 6rem;
     }
     .grid{
-      display:grid;
-      gap:1.8rem;
-      grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+      max-width:1100px;margin:auto;
+      display:grid;gap:1.8rem;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
     }
     .card{
       background:var(--glass);
-      backdrop-filter:blur(20px);
-      -webkit-backdrop-filter:blur(20px);
       border:1px solid rgba(255,255,255,.55);
-      border-radius:20px;
-      padding:1.8rem 1.4rem;
-      box-shadow:0 8px 32px rgba(0,0,0,.08);
-      transform:translateY(40px);
-      opacity:0;
+      backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+      border-radius:18px;padding:1.7rem 1.5rem;
+      box-shadow:0 6px 24px rgba(0,0,0,.10);
+      transform:translateY(35px);opacity:0;
       animation:rise .8s forwards;
     }
-    .card:nth-child(1){animation-delay:.15s}
-    .card:nth-child(2){animation-delay:.3s}
-    .card:nth-child(3){animation-delay:.45s}
-    .card:nth-child(4){animation-delay:.6s}
-
+    .card:nth-child(1){animation-delay:.1s}
+    .card:nth-child(2){animation-delay:.25s}
+    .card:nth-child(3){animation-delay:.4s}
+    .card:nth-child(4){animation-delay:.55s}
     .card a{
-      text-decoration:none;
-      color:#0f172a;
-      font-weight:600;
-      font-size:1.05rem;
+      text-decoration:none;color:var(--c3);
+      font-weight:600;font-size:1.05rem;
     }
-    .card:hover{transform:translateY(-4px) scale(1.02);}
-    .card:hover a{color:var(--accent-dark)}
-
+    .card:hover{transform:translateY(-4px) scale(1.02)}
+    .card:hover a{color:var(--c1)}
     @keyframes rise{to{transform:translateY(0);opacity:1}}
 
     /* ---------- PHONE BAR ---------- */
-    .phone-bar{
-      position:fixed;
-      bottom:18px;left:50%;transform:translateX(-50%);
+    .bar{
+      position:fixed;bottom:22px;left:50%;transform:translateX(-50%);
+      display:flex;gap:1.6rem;align-items:center;
+      font-weight:600;font-size:.96rem;color:var(--c3);
       background:var(--glass);
-      backdrop-filter:blur(20px);
-      -webkit-backdrop-filter:blur(20px);
-      border:1px solid rgba(255,255,255,.5);
-      border-radius:40px;
-      padding:.7rem 1.4rem;
-      display:flex;gap:1.4rem;
-      font-weight:600;
-      font-size:.97rem;
-      box-shadow:0 6px 22px rgba(0,0,0,.12);
-      z-index:100;
+      border:1px solid rgba(255,255,255,.55);
+      backdrop-filter:blur(18px);
+      -webkit-backdrop-filter:blur(18px);
+      border-radius:40px;padding:.7rem 1.8rem;
+      box-shadow:0 6px 22px rgba(0,0,0,.13);z-index:1000;
     }
-    .phone-bar a{
-      text-decoration:none;
-      color:var(--accent-dark);
-    }
+    .bar a{text-decoration:none;color:var(--c3)}
+    .bar a:hover{color:var(--c1)}
+    @media(max-width:460px){.bar{flex-direction:column;gap:.4rem;font-size:.9rem}}
 
     /* ---------- FOOTER ---------- */
     footer{
-      text-align:center;
-      padding:2rem 1rem 5rem;
-      font-size:.9rem;
-      color:#0f172a90;
-    }
-    @media(max-width:420px){
-      .phone-bar{flex-direction:column;align-items:center;gap:.4rem}
+      text-align:center;font-size:.9rem;color:#475569;
+      padding:2.5rem 1rem 5.5rem;margin-top:auto;background:#f7f9fc;
     }
   </style>
 </head>
-
 <body>
 
   <!-- HERO -->
-  <section class="hero">
-    <h1>Интерактивные карты обращений</h1>
-    <p class="subtitle">
-      Наглядная визуализация обращений жителей<br>
-      по&nbsp;водоснабжению и&nbsp;канализации за&nbsp;разные&nbsp;периоды.
-    </p>
-    <button class="scroll-btn" onclick="document.getElementById('maps').scrollIntoView({behavior:'smooth'})">
-      Смотреть карты
-    </button>
-  </section>
+  <header class="hero">
+      <!-- замените на logo.svg / .png -->
+      <img src="logo.svg" alt="Логотип ЗВКС" class="logo">
+      <h1>Интерактивные карты обращений</h1>
+      <p class="subtitle">
+        Наглядная статистика обращений жителей по водоснабжению и канализации.
+      </p>
+      <button class="scroll-btn"
+              onclick="document.getElementById('maps').scrollIntoView({behavior:'smooth'})">
+        Смотреть карты
+      </button>
+  </header>
 
-  <!-- CARDS -->
+  <!-- КАРТОЧКИ -->
   <section id="maps" class="section">
     <div class="grid">
-      <div class="card"><a href="03.23-04.25 kanalizatsiya.html">Март 2023 — Апрель 2025 · Канализация</a></div>
-      <div class="card"><a href="03.23-04.25 vodosnabjenie.html">Март 2023 — Апрель 2025 · Водоснабжение</a></div>
-      <div class="card"><a href="08.24-04.25 kanalizatsiya.html">Август 2024 — Апрель 2025 · Канализация</a></div>
-      <div class="card"><a href="04.25 kanaliztsiya.html">Апрель 2025 · Канализация</a></div>
+      <div class="card">
+        <a href="03.23-04.25 kanalizatsiya.html">Март 2023 — Апрель 2025&nbsp;· Канализация</a>
+      </div>
+      <div class="card">
+        <a href="03.23-04.25 vodosnabjenie.html">Март 2023 — Апрель 2025&nbsp;· Водоснабжение</a>
+      </div>
+      <div class="card">
+        <a href="08.24-04.25 kanalizatsiya.html">Август 2024 — Апрель 2025&nbsp;· Канализация</a>
+      </div>
+      <div class="card">
+        <a href="04.25 kanaliztsiya.html">Апрель 2025&nbsp;· Канализация</a>
+      </div>
     </div>
   </section>
 
-  <!-- PHONE BAR -->
-  <div class="phone-bar">
-    📞 Единый&nbsp;номер&nbsp;<a href="tel:48517">48517</a>
-    🏢 Приёмная&nbsp;<a href="tel:48520">48520</a>
+  <!-- КОНТАКТЫ -->
+  <div class="bar">
+    📞 <a href="tel:48517">Единый 48517</a>
+    🏢 <a href="tel:48520">Приёмная 48520</a>
   </div>
 
-  <!-- FOOTER -->
   <footer>
-    © 2025&nbsp;АО&nbsp;«ЗВКС» — автоматизация & визуализация обращений
+    © 2025 АО «ЗВКС» — визуализация и анализ обращений
   </footer>
 
 </body>
