@@ -1,16 +1,83 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
   <title>Карта обращений</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      background-color: #f8f9fa;
+      color: #333;
+      margin: 0;
+      padding: 2rem;
+    }
+
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 2rem;
+    }
+
+    h2 {
+      color: #007acc;
+      border-bottom: 2px solid #007acc;
+      padding-bottom: 0.3rem;
+      max-width: 600px;
+      margin: 2rem auto 1rem;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    li {
+      background: #ffffff;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+      transition: transform 0.2s ease;
+    }
+
+    li:hover {
+      transform: scale(1.02);
+    }
+
+    a {
+      display: block;
+      padding: 1rem;
+      text-decoration: none;
+      color: #2c3e50;
+      font-weight: 500;
+    }
+
+    a:hover {
+      background-color: #f0f0f0;
+    }
+  </style>
 </head>
 <body>
+
   <h1>Карта обращений по месяцам</h1>
+
+  <h2>2023</h2>
   <ul>
-    <li><a href="03.23-04.25 kanalizatsiya.html"> Март 2023 - Апрель 2025 Канализаия </a></li>
-    <li><a href="03.23-04.25 vodosnabjenie.html"> Март 2023 - Апрель 2025 Водоснабжение </a></li>
-    <li><a href="04.25 kanaliztsiya.html"> Апрель 2025 Канализация </a></li>
-    <li><a href="08.24-04.25 kanalizatsiya.html"> Август 2024 - Апрель 2024 Канализация </a></li>
+    <li><a href="03.23-04.25 kanalizatsiya.html">Март 2023 — Апрель 2025 · Канализация</a></li>
+    <li><a href="03.23-04.25 vodosnabjenie.html">Март 2023 — Апрель 2025 · Водоснабжение</a></li>
   </ul>
+
+  <h2>2024</h2>
+  <ul>
+    <li><a href="08.24-04.25 kanalizatsiya.html">Август 2024 — Апрель 2025 · Канализация</a></li>
+  </ul>
+
+  <h2>2025</h2>
+  <ul>
+    <li><a href="04.25 kanaliztsiya.html">Апрель 2025 · Канализация</a></li>
+  </ul>
+
 </body>
 </html>
