@@ -3,129 +3,154 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Интерактивные карты обращений</title>
+  <title>Интерактивные карты | ZVKS</title>
+
   <style>
-    * {
-      box-sizing: border-box;
+    /* ======  Цвета и шрифты  ====== */
+    :root {
+      --grad-start: #d8e8ff;
+      --grad-end:   #f1f5ff;
+      --accent:     #2563eb;
+      --card-bg:    rgba(255, 255, 255, 0.35);
+      --blur:       16px;
     }
+    @supports (-webkit-backdrop-filter: blur(0)) or (backdrop-filter: blur(0)) {
+      :root { --card-bg: rgba(255, 255, 255, 0.25); }
+    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
-      font-family: 'Segoe UI', Roboto, sans-serif;
-      background-color: #f9fafb;
-      color: #1f2937;
-      line-height: 1.6;
-    }
-
-    header {
-      background-color: #1e3a8a;
-      color: white;
-      padding: 2rem 1rem;
-      text-align: center;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    }
-
-    header h1 {
-      font-size: 2.2rem;
-      margin: 0;
-    }
-
-    .container {
-      max-width: 960px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-    }
-
-    .description {
-      text-align: center;
-      font-size: 1.1rem;
-      margin-bottom: 2rem;
-      color: #4b5563;
-    }
-
-    .card-list {
+      font-family: "Inter", "Segoe UI", Roboto, sans-serif;
+      color: #0f172a;
+      background: linear-gradient(135deg, var(--grad-start) 0%, var(--grad-end) 100%);
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
-      gap: 1.2rem;
+    }
+
+    /* ======  Шапка  ====== */
+    header {
+      text-align: center;
+      padding: 3.5rem 1rem 3rem;
+    }
+    header h1 {
+      font-size: clamp(1.9rem, 4vw, 2.8rem);
+      margin: 0;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: var(--accent);
+    }
+
+    /* ======  Сетка карточек  ====== */
+    .grid {
+      width: min(100% - 2rem, 1000px);
+      margin: 0 auto;
+      display: grid;
+      gap: 1.6rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     }
 
     .card {
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-      transition: all 0.25s ease;
+      background: var(--card-bg);
+      backdrop-filter: blur(var(--blur));
+      -webkit-backdrop-filter: blur(var(--blur));
+      border-radius: 20px;
+      padding: 2rem 1.6rem;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+      border: 1px solid rgba(255,255,255,0.4);
+      transform: translateY(30px);
+      opacity: 0;
+      animation: rise 0.8s forwards;
+    }
+    /* задержки появления */
+    .card:nth-child(1){animation-delay:.1s}
+    .card:nth-child(2){animation-delay:.25s}
+    .card:nth-child(3){animation-delay:.4s}
+    .card:nth-child(4){animation-delay:.55s}
+
+    .card a{
+      text-decoration:none;
+      color:#0f172a;
+      font-size:1.05rem;
+      font-weight:600;
+    }
+    .card:hover{transform:translateY(-4px) scale(1.02);}
+    .card:hover a{color:var(--accent);}
+
+    @keyframes rise{
+      to{transform:translateY(0);opacity:1}
     }
 
-    .card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    /* ======  Плавающая панель телефонов  ====== */
+    .phone-bar{
+      position:fixed;
+      bottom:0;
+      left:50%;
+      transform:translateX(-50%);
+      width:clamp(240px,90%,480px);
+      display:flex;
+      justify-content:space-around;
+      align-items:center;
+      background:var(--card-bg);
+      backdrop-filter:blur(var(--blur));
+      -webkit-backdrop-filter:blur(var(--blur));
+      border:1px solid rgba(255,255,255,0.45);
+      border-radius:14px 14px 0 0;
+      padding:0.8rem 1rem;
+      font-size:1rem;
+      box-shadow:0 -6px 20px rgba(0,0,0,0.08);
+      z-index:1000;
     }
-
-    .card a {
-      display: block;
-      padding: 1.3rem 1.5rem;
-      text-decoration: none;
-      color: #1e40af;
-      font-weight: 600;
-      font-size: 1.05rem;
+    .phone-bar b{color:var(--accent);}
+    .phone-bar a{
+      text-decoration:none;
+      color:#0f172a;
+      font-weight:600;
     }
+    .phone-bar a:hover{color:var(--accent);}
 
-    .card a:hover {
-      background-color: #f1f5f9;
-    }
-
-    footer {
-      text-align: center;
-      font-size: 0.85rem;
-      color: #9ca3af;
-      margin-top: 3rem;
-      padding: 2rem 0;
-    }
-
-    @media (max-width: 640px) {
-      header h1 {
-        font-size: 1.6rem;
-      }
-
-      .card a {
-        font-size: 1rem;
-        padding: 1rem;
-      }
+    /* ======  Подвал  ====== */
+    footer{
+      margin-top:auto;
+      text-align:center;
+      padding:3.5rem 1rem 6rem; /* extra space for phone bar */
+      font-size:.9rem;
+      color:#475569;
     }
   </style>
 </head>
+
 <body>
 
   <header>
-    <h1>Интерактивные карты обращений</h1>
+    <h1>Интерактивные&nbsp;карты обращений</h1>
   </header>
 
-  <main class="container">
-
-    <p class="description">
-      Ниже представлены карты, отражающие обращения жителей за разные периоды по направлениям — водоснабжение и канализация.
-    </p>
-
-    <section class="card-list">
-      <div class="card">
-        <a href="03.23-04.25 kanalizatsiya.html">Март 2023 — Апрель 2025 · Канализация</a>
-      </div>
-      <div class="card">
-        <a href="03.23-04.25 vodosnabjenie.html">Март 2023 — Апрель 2025 · Водоснабжение</a>
-      </div>
-      <div class="card">
-        <a href="08.24-04.25 kanalizatsiya.html">Август 2024 — Апрель 2025 · Канализация</a>
-      </div>
-      <div class="card">
-        <a href="04.25 kanaliztsiya.html">Апрель 2025 · Канализация</a>
-      </div>
-    </section>
-
-    <footer>
-      © 2025 АО «ЗВКС». Автоматизация обращений — визуализация и прозрачность.
-    </footer>
-
+  <main class="grid">
+    <div class="card">
+      <a href="03.23-04.25 kanalizatsiya.html">Март&nbsp;2023 — Апрель 2025&nbsp;· Канализация</a>
+    </div>
+    <div class="card">
+      <a href="03.23-04.25 vodosnabjenie.html">Март&nbsp;2023 — Апрель 2025&nbsp;· Водоснабжение</a>
+    </div>
+    <div class="card">
+      <a href="08.24-04.25 kanalizatsiya.html">Август 2024 — Апрель 2025&nbsp;· Канализация</a>
+    </div>
+    <div class="card">
+      <a href="04.25 kanaliztsiya.html">Апрель 2025&nbsp;· Канализация</a>
+    </div>
   </main>
+
+  <!-- Плавающая строка телефонов -->
+  <div class="phone-bar">
+      📞 Единый&nbsp;номер: <a href="tel:48517"><b>48517</b></a> &nbsp;|&nbsp;
+      🏢 Приёмная: <a href="tel:48520"><b>48520</b></a>
+  </div>
+
+  <footer>
+    © 2025&nbsp;АО&nbsp;«ЗВКС» · Автоматизация и&nbsp;визуализация обращений
+  </footer>
 
 </body>
 </html>
