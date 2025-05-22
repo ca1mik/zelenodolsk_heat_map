@@ -1,32 +1,37 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Интерактивные карты обращений</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, sans-serif;
-      background: linear-gradient(to right, #eef2f3, #ffffff);
-      color: #333;
+      font-family: 'Segoe UI', Roboto, sans-serif;
+      background-color: #f9fafb;
+      color: #1f2937;
+      line-height: 1.6;
     }
 
     header {
-      background-color: #005792;
+      background-color: #1e3a8a;
       color: white;
       padding: 2rem 1rem;
       text-align: center;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     }
 
     header h1 {
-      margin: 0;
       font-size: 2.2rem;
+      margin: 0;
     }
 
-    .content {
-      max-width: 900px;
+    .container {
+      max-width: 960px;
       margin: 2rem auto;
       padding: 0 1rem;
     }
@@ -35,45 +40,57 @@
       text-align: center;
       font-size: 1.1rem;
       margin-bottom: 2rem;
-      color: #555;
+      color: #4b5563;
     }
 
-    ul {
-      list-style: none;
-      padding: 0;
+    .card-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
     }
 
-    li {
-      background: #ffffff;
-      margin-bottom: 1.2rem;
-      border-radius: 10px;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.07);
-      transition: transform 0.2s;
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      transition: all 0.25s ease;
     }
 
-    li:hover {
-      transform: scale(1.015);
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
     }
 
-    a {
+    .card a {
       display: block;
-      padding: 1.2rem 1.5rem;
+      padding: 1.3rem 1.5rem;
       text-decoration: none;
-      color: #2c3e50;
-      font-weight: 500;
+      color: #1e40af;
+      font-weight: 600;
       font-size: 1.05rem;
     }
 
-    a:hover {
-      background-color: #f0faff;
+    .card a:hover {
+      background-color: #f1f5f9;
     }
 
     footer {
       text-align: center;
       font-size: 0.85rem;
-      color: #999;
-      margin-top: 4rem;
-      padding-bottom: 2rem;
+      color: #9ca3af;
+      margin-top: 3rem;
+      padding: 2rem 0;
+    }
+
+    @media (max-width: 640px) {
+      header h1 {
+        font-size: 1.6rem;
+      }
+
+      .card a {
+        font-size: 1rem;
+        padding: 1rem;
+      }
     }
   </style>
 </head>
@@ -83,24 +100,32 @@
     <h1>Интерактивные карты обращений</h1>
   </header>
 
-  <div class="content">
+  <main class="container">
 
     <p class="description">
-      Здесь представлены интерактивные карты с обращениями жителей по водоснабжению и канализации. Данные сгруппированы по периодам и видам работ.
+      Ниже представлены карты, отражающие обращения жителей за разные периоды по направлениям — водоснабжение и канализация.
     </p>
 
-    <ul>
-      <li><a href="03.23-04.25 kanalizatsiya.html">Март 2023 — Апрель 2025 · Канализация</a></li>
-      <li><a href="03.23-04.25 vodosnabjenie.html">Март 2023 — Апрель 2025 · Водоснабжение</a></li>
-      <li><a href="08.24-04.25 kanalizatsiya.html">Август 2024 — Апрель 2025 · Канализация</a></li>
-      <li><a href="04.25 kanaliztsiya.html">Апрель 2025 · Канализация</a></li>
-    </ul>
+    <section class="card-list">
+      <div class="card">
+        <a href="03.23-04.25 kanalizatsiya.html">Март 2023 — Апрель 2025 · Канализация</a>
+      </div>
+      <div class="card">
+        <a href="03.23-04.25 vodosnabjenie.html">Март 2023 — Апрель 2025 · Водоснабжение</a>
+      </div>
+      <div class="card">
+        <a href="08.24-04.25 kanalizatsiya.html">Август 2024 — Апрель 2025 · Канализация</a>
+      </div>
+      <div class="card">
+        <a href="04.25 kanaliztsiya.html">Апрель 2025 · Канализация</a>
+      </div>
+    </section>
 
     <footer>
-      © 2025 АО "ЗВКС" — Автоматизация и визуализация обращений
+      © 2025 АО «ЗВКС». Автоматизация обращений — визуализация и прозрачность.
     </footer>
 
-  </div>
+  </main>
 
 </body>
 </html>
